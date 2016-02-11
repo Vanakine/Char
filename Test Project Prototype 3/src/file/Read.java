@@ -29,7 +29,7 @@ public class Read {
 		return finalString;
 	}
 	
-	public static String readAll(String s){
+	public static String readLastLine(String s){
 		String finalString = null, string = null;
 		BufferedReader br = null;
 		
@@ -48,6 +48,30 @@ public class Read {
 			}
 		}
 		
+		return finalString;
+	}
+	
+	public static String[] readAll(String s){
+		String[] finalString = null;
+		int lines = Lines.getLine(s);
+		finalString = new String[lines];
+		String string = null;
+		BufferedReader br = null;
+		
+		try {
+			br = new BufferedReader(new FileReader(s));
+			for(int i = 0;(string = br.readLine()) != null; i++){
+				finalString[i] = string;
+			}
+		}catch (IOException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if (br != null)br.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		return finalString;
 	}
 }
